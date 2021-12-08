@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -18,36 +19,37 @@ public class UserController {
     //Add user method
     @PostMapping ("User/addUser")
     public ResponseEntity<String> addUser(@RequestBody User user ){
-        users.add(user);
+       // users.add(user);
+        userRepo.save(user);
         return ResponseEntity.status(HttpStatus.OK).body("User added sucessfully");
     }
     //Fetch all users  method
     @GetMapping ("User/getAllUsers")
     public ResponseEntity<List<User>> getUsers(){
-      return  ResponseEntity.status(HttpStatus.OK).body(users);
-       // return ResponseEntity.status(HttpStatus.OK).body(respository.findAll());
+    //  return  ResponseEntity.status(HttpStatus.OK).body(users);
+       return ResponseEntity.status(HttpStatus.OK).body(userRepo.findAll());
     }
 
     @GetMapping ("User/{userId}")
-    public ResponseEntity<User> getUser(@PathVariable String userId){
-        return  ResponseEntity.status(HttpStatus.OK).body(users.stream().filter(user -> user.getId().equals(userId)).findFirst().orElse(null));
+    public ResponseEntity<Optional<User>> getUser(@PathVariable String userId){
+       // return  ResponseEntity.status(HttpStatus.OK).body(users.stream().filter(user -> user.getId().equals(userId)).findFirst().orElse(null));
+    return ResponseEntity.status(HttpStatus.OK).body(userRepo.findById(userId));
     }
 
     //Delete single user method
     @DeleteMapping("User/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable String id){
-        users.removeIf(user -> user.getId().equals(id));
-       // users.remove(id);
-        return ResponseEntity.status(HttpStatus.GONE).body("User Deleted Successfully" + id);
+        userRepo.deleteById(id);
+      //  users.removeIf(user -> user.getId().equals(id));
+       return ResponseEntity.status(HttpStatus.GONE).body("User Deleted Successfully" + id);
     }
     //Update user method
 
    //Bulk delete
     @PostMapping("/User/deleteUsers")
-    private void deleteEmployees(@RequestBody ArrayList<User> userlist){
-        userlist.forEach(user -> users.remove(user.getId()));
-        //users.removeIf(user -> user.getId() == id);
-       // users.remove(id);
+    private ResponseEntity<String> deleteEmployees(@RequestBody ArrayList<String> userlist){
+        userRepo.deleteAllById(userlist);
+       return ResponseEntity.status(HttpStatus.GONE).body("Bulk delete successfull");
     }
 
 
