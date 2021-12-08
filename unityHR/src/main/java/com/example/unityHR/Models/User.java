@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 
 public class User {
-    private int id;
+    private String id;
     private String pronoun;
     private String firstName;
     private String lastName;
@@ -22,7 +22,11 @@ public class User {
     private String updatedBy;
     private String updatedOn;
 
-    public User (int id, String pronoun, String firstName, String lastName, String address, String emailVerified,
+    public  User(){
+
+    }
+
+    public User (String id, String pronoun, String firstName, String lastName, String address, String emailVerified,
                  String type, String jobTitle, long mobile, String department, String profileImage, String theme) {
         this.id = id;
         this.pronoun = pronoun;
@@ -38,11 +42,12 @@ public class User {
         this.theme = theme;
     }
 
-        public String getId(){
-        return getId();
-        }
 
-        public String getType() {
+    public String getId() {
+        return id;
+    }
+
+    public String getType() {
             return type;
         }
 
