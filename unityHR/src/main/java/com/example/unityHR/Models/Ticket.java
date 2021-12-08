@@ -15,7 +15,7 @@ public class Ticket {
     private String title;
     private String description;
     private String status;
-    private String department;
+    // private String department;
     private ArrayList<Response> responses;
     private String assignee;
     private String responseOn;
