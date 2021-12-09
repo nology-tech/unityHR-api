@@ -1,15 +1,29 @@
 package com.example.unityHR.Models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+
 public class EmployeeTypes {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
 
-    public EmployeeTypes(String id,String name){
+    public EmployeeTypes(){
+
+    }
+
+
+    public EmployeeTypes(int id,String name){
         this.id= id;
         this.name= name;
     }
 
-    public String getId(){
+    public int getId(){
         return id;
     }
 
