@@ -32,6 +32,4 @@ public class EmployeeTypesController {
         return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
     }
 
-
-
 }
