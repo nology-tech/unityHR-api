@@ -17,7 +17,7 @@ public class EmployeeTypesController {
 //    EmployeeTypes admintypes= new EmployeeTypes("002","admin-employee");
 
 
-    @PostMapping("/employeetype")
+    @PostMapping("/employeetypes")
     public ResponseEntity<String> createEmployeeTypes(@RequestBody EmployeeTypes employeetype)  {
             employeetypes.add(employeetype);
             return ResponseEntity.status(HttpStatus.CREATED).body("Employee types added");
