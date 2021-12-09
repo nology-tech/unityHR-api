@@ -17,7 +17,7 @@ import java.util.List;
 
 public class RequestTypeController {
 
-    private ArrayList<RequestType> requestTypes = new ArrayList<>();
+
 
     @Autowired
     RequestTypeRepository repository;
@@ -40,6 +40,29 @@ public class RequestTypeController {
        return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
 
    }
+
+//    private ArrayList<RequestType> newRequestTypes = new ArrayList<>();
+//    private RequestType newRequestType = new RequestType();
+//
+//    @PostMapping("/reqtype")
+//    public ResponseEntity<String> addNewRequestType(@RequestBody RequestType requestType){
+//
+//        if (requestType.getRequestType().length() < 4) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Request Type too short");
+//        } else {
+//            newRequestTypes.add(newRequestType);
+//            return ResponseEntity.status(HttpStatus.CREATED)
+//                    .body("Request Type Added " + requestType.getRequestType());
+//        }
+//
+//    }
+//
+//    @GetMapping("/reqtypes")
+//    public ResponseEntity<List<RequestType>> getAllNewRequestTypes(){
+//        return ResponseEntity.status(HttpStatus.OK).body(newRequestTypes);
+//
+//    }
+
 
 
 }
