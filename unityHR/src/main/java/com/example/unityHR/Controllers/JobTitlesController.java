@@ -24,14 +24,72 @@ public class JobTitlesController {
                 .body(jobTitles);
     }
 
+    @GetMapping("/job-title/{id}")
+    public ResponseEntity<JobTitles> getJobTitle(@PathVariable String id) {
+        //String jobTitlesSizeHeaderValue = "Count: " + jobTitles.size();
+        for(JobTitles jobTitle : jobTitles) {
+            if(jobTitle.getJobTitleId().equals(id)){
+                return ResponseEntity
+                        .status(HttpStatus.FOUND)
+                        .header("JobTitleId Found", "id: " + id)
+                        .body(jobTitle);
+            }
+        }
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .header("JobTitleId Not Found", "id: " + id)
+                .body(null);
+
+    }
+
     @PostMapping("/job-title")
     public ResponseEntity<String> createJobTitle(@RequestBody JobTitles jobTitle) {
-        //String jobTitlesSizeHeaderValue = "Count: " + jobTitles.size();
+
+        jobTitles.add(jobTitle);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .header("Job Title Added", "1")
                 .body(jobTitle.getJobTitle());
     }
+
+    @DeleteMapping("/job-title/{id}")
+    public ResponseEntity<String> deleteJobTitle(@PathVariable String id) {
+
+        for(JobTitles jobTitle : jobTitles) {
+            if(jobTitle.getJobTitleId().equals(id)){
+                jobTitles.remove(jobTitle);
+                return ResponseEntity
+                        .status(HttpStatus.GONE)
+                        .header("JobTitleId Deleted", "id: " + id)
+                        .body("JobTitle Deleted: " + jobTitle);
+            }
+        }
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .header("JobTitleId Not Found for deletion", "id: " + id)
+                .body("Id " + id + " not found");
+
+    }
+
+    @PatchMapping("/job-title/{id}")
+    public ResponseEntity<String> updateJobTitle(@PathVariable String id, @RequestBody String title) {
+
+        for(JobTitles jobTitle : jobTitles) {
+            if(jobTitle.getJobTitleId().equals(id)){
+                jobTitle.setJobTitle(title);
+                return ResponseEntity
+                        .status(HttpStatus.OK)
+                        .header("JobTitle updated", "id: " + id)
+                        .body("JobTitle updated: " + jobTitle);
+            }
+        }
+        return ResponseEntity
+                .status(HttpStatus.NOT_MODIFIED)
+                .header("JobTitleId Not Found to update ", "id: " + id)
+                .body("Id " + id + " not found to update");
+
+    }
+
 
 
 

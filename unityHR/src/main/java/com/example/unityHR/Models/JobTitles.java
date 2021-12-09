@@ -8,13 +8,14 @@ import javax.persistence.Id;
 @Entity
 public class JobTitles {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private String jobTitleId;
     private String jobTitle;
 
-    public JobTitles(String jobTitle) {
+    public JobTitles(String jobTitleId,String jobTitle) {
+          this.jobTitleId = jobTitleId;
           this.jobTitle = jobTitle;
     }
 
@@ -24,6 +25,10 @@ public class JobTitles {
 
     public String getJobTitle() {
         return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
 
     @Override
