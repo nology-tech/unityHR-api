@@ -1,6 +1,6 @@
 package com.example.unityHR.Controllers;
 import com.example.unityHR.Models.User;
-import com.example.unityHR.Repository.UserRepository;
+//import com.example.unityHR.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
