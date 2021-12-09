@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JobTitlesRepository extends JpaRepository<JobTitles, Integer> {
+   // String deleteByid(int id);
+
 }

@@ -61,39 +61,44 @@ public class JobTitlesController {
     @DeleteMapping("/job-title/{id}")
     public ResponseEntity<String> deleteJobTitle(@PathVariable String id) {
 
-        for(JobTitles jobTitle : jobTitles) {
-            if(jobTitle.getJobTitleId()== parseInt(id)){
-                jobTitles.remove(jobTitle);
+
+            if(jobTitlesRepository.findById(parseInt(id)) !=null){
+                //jobTitles.remove(jobTitle);
+                jobTitlesRepository.deleteById(parseInt(id));
                 return ResponseEntity
                         .status(HttpStatus.GONE)
                         .header("JobTitleId Deleted", "id: " + id)
-                        .body("JobTitle Deleted: " + jobTitle);
+                        .body("JobTitle Deleted: " + id);
+            } else {
+                return ResponseEntity
+                        .status(HttpStatus.NOT_FOUND)
+                        .header("JobTitleId Not Found for deletion", "id: " + id)
+                        .body("Id " + id + " not found");
             }
-        }
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .header("JobTitleId Not Found for deletion", "id: " + id)
-                .body("Id " + id + " not found");
-
     }
 
     @PatchMapping("/job-title/{id}")
     public ResponseEntity<String> updateJobTitle(@PathVariable String id, @RequestBody String title) {
 
-        for(JobTitles jobTitle : jobTitles) {
-            if(jobTitle.getJobTitleId()== parseInt(id)){
+//        JobTitles jobTitle = jobTitlesRepository
+//                .findById(parseInt(id)).orElseThrow();
+            if(jobTitlesRepository.findById(parseInt(id)) !=null){
+                JobTitles jobTitle = jobTitlesRepository
+                        .findById(parseInt(id)).orElseThrow();
                 jobTitle.setJobTitle(title);
+                jobTitlesRepository.save(jobTitle);
+
                 return ResponseEntity
                         .status(HttpStatus.OK)
                         .header("JobTitle updated", "id: " + id)
                         .body("JobTitle updated: " + jobTitle);
-            }
-        }
-        return ResponseEntity
-                .status(HttpStatus.NOT_MODIFIED)
-                .header("JobTitleId Not Found to update ", "id: " + id)
-                .body("Id " + id + " not found to update");
+            } else {
 
+                return ResponseEntity
+                        .status(HttpStatus.NOT_MODIFIED)
+                        .header("JobTitleId Not Found to update ", "id: " + id)
+                        .body("Id " + id + " not found to update");
+            }
     }
 
 
