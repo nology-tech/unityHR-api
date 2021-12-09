@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
-@ComponentScan({"com.delivery.request"})
+@SpringBootApplication
+//@ComponentScan({"com.delivery.request"})
 public class UnityHrApplication {
 
 	public static void main(String[] args) {
