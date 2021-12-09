@@ -8,18 +8,21 @@ import javax.persistence.Id;
 @Entity
 public class JobTitles {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private String jobTitleId;
+    private int jobTitleId;
     private String jobTitle;
 
-    public JobTitles(String jobTitleId,String jobTitle) {
-          this.jobTitleId = jobTitleId;
+    public JobTitles(String jobTitle) {
+
           this.jobTitle = jobTitle;
     }
 
-    public String getJobTitleId() {
+    public JobTitles() {
+    }
+
+    public int getJobTitleId() {
         return jobTitleId;
     }
 

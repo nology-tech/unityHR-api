@@ -1,5 +1,6 @@
 package com.example.unityHR.Controllers;
 import com.example.unityHR.Models.JobTitles;
+import com.example.unityHR.Repositories.JobTitlesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,45 +8,50 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static java.lang.Integer.parseInt;
 
 @RestController
 public class JobTitlesController {
    private ArrayList<JobTitles> jobTitles = new ArrayList<>();
 
-    //@Autowired
-    //JobTitlesRepository repository;
+    @Autowired
+    JobTitlesRepository jobTitlesRepository;
 
     @GetMapping("/job-titles")
-    public ResponseEntity<ArrayList<JobTitles>> getJobTitles() {
+    public ResponseEntity<List<JobTitles>> getJobTitles() {
         String jobTitlesSizeHeaderValue = "Count: " + jobTitles.size();
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .header("AllJobTitles",jobTitlesSizeHeaderValue)
-                .body(jobTitles);
+                .body(jobTitlesRepository.findAll());
     }
 
     @GetMapping("/job-title/{id}")
-    public ResponseEntity<JobTitles> getJobTitle(@PathVariable String id) {
-        //String jobTitlesSizeHeaderValue = "Count: " + jobTitles.size();
-        for(JobTitles jobTitle : jobTitles) {
-            if(jobTitle.getJobTitleId().equals(id)){
+    public ResponseEntity<Optional<JobTitles>> getJobTitle(@PathVariable String id) {
+
+
+            if(jobTitlesRepository.findById(parseInt(id)) !=null){
                 return ResponseEntity
                         .status(HttpStatus.FOUND)
                         .header("JobTitleId Found", "id: " + id)
-                        .body(jobTitle);
-            }
-        }
-        return ResponseEntity
+                        .body(jobTitlesRepository.findById(parseInt(id)));
+            } else{
+
+                 return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .header("JobTitleId Not Found", "id: " + id)
                 .body(null);
 
-    }
+    }       }
 
     @PostMapping("/job-title")
     public ResponseEntity<String> createJobTitle(@RequestBody JobTitles jobTitle) {
 
-        jobTitles.add(jobTitle);
+        //jobTitles.add(jobTitle);
+        jobTitlesRepository.save(jobTitle);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .header("Job Title Added", "1")
@@ -56,7 +62,7 @@ public class JobTitlesController {
     public ResponseEntity<String> deleteJobTitle(@PathVariable String id) {
 
         for(JobTitles jobTitle : jobTitles) {
-            if(jobTitle.getJobTitleId().equals(id)){
+            if(jobTitle.getJobTitleId()== parseInt(id)){
                 jobTitles.remove(jobTitle);
                 return ResponseEntity
                         .status(HttpStatus.GONE)
@@ -75,7 +81,7 @@ public class JobTitlesController {
     public ResponseEntity<String> updateJobTitle(@PathVariable String id, @RequestBody String title) {
 
         for(JobTitles jobTitle : jobTitles) {
-            if(jobTitle.getJobTitleId().equals(id)){
+            if(jobTitle.getJobTitleId()== parseInt(id)){
                 jobTitle.setJobTitle(title);
                 return ResponseEntity
                         .status(HttpStatus.OK)
