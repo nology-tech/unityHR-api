@@ -14,8 +14,7 @@ public class DepartmentsController {
  @Autowired
     DepartmentRepository repository;
 
-
-     ArrayList<Departments> departments = new ArrayList<>();
+    ArrayList<Departments> departments = new ArrayList<>();
 
 
 
@@ -28,8 +27,9 @@ public ResponseEntity<List<Departments>> getDepartments(){
 
 //POST a new department
 @PostMapping("/department")
-public ResponseEntity<Departments> addDepartment (@RequestBody Departments department) {
-return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(department));
+public ResponseEntity<String> addDepartment (@RequestBody Departments department) {
+    repository.save(department);
+return ResponseEntity.status(HttpStatus.CREATED).body("Department has been added");
 
 }
 

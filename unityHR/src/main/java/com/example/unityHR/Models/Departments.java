@@ -10,27 +10,29 @@ public class Departments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private String id;
+    private int id;
     private String name;
 
-    public Departments(String id, String name) {
-        this.id = id;
+    public Departments() {}
+
+    public Departments( String name) {
+
         this.name = name;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
-        return "Departments{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Departments{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
