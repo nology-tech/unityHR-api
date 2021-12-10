@@ -17,14 +17,8 @@ public class Ticket {
     private String title;
     private String description;
     private String status;
-    // private String department;
-    private ArrayList<Response> responses;
-    private String assignee;
-    //private String responseOn;
     private String createdBy;
     private Timestamp createdOn;
-    //private String updatedBy;
-    //private String updatedOn;
 
     public Ticket() {
         Date date = new Date();
@@ -59,14 +53,6 @@ public class Ticket {
         return status;
     }
 
-    public ArrayList<Response> getResponses() {
-        return responses;
-    }
-
-    public String getAssignee() {
-        return assignee;
-    }
-
     public String getCreatedBy() {
         return createdBy;
     }
@@ -74,7 +60,6 @@ public class Ticket {
     public Timestamp getCreatedOn() {
         return createdOn;
     }
-
 
     @Override
     public String toString() {
@@ -84,13 +69,8 @@ public class Ticket {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
-                ", responses=" + responses +
-                ", assignee='" + assignee + '\'' +
-                //", responseOn='" + responseOn + '\'' +
                 ", createdBy='" + createdBy + '\'' +
                 ", createdOn='" + createdOn + '\'' +
-                //", updatedBy='" + updatedBy + '\'' +
-                //", updatedOn='" + updatedOn + '\'' +
                 '}';
     }
 }
