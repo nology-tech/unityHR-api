@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TicketResponsesRepository extends JpaRepository<TicketsResponses, Integer> {
-
     List<TicketsResponses> findAllByticketid(int parseInt);
 }

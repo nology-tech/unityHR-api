@@ -9,6 +9,7 @@ import java.util.Date;
 
 @Entity
 public class TicketsResponses {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ticketResponsesId;
