@@ -1,9 +1,14 @@
 package com.example.unityHR.Models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
 import java.util.Date;
 
+@Entity
 public class Tickets_Responses {
+    @Id
+    private int ticketResponsesId;
     private int ticketId;
     private int responseId;
     private String responseText;
