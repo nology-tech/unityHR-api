@@ -15,6 +15,7 @@ import java.util.Optional;
 import static java.lang.Integer.parseInt;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class TicketController {
 //        private ArrayList<Ticket> tickets = new ArrayList<>();
 
