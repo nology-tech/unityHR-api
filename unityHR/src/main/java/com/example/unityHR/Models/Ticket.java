@@ -21,16 +21,14 @@ public class Ticket {
     private Timestamp createdOn;
 
     public Ticket() {
-        Date date = new Date();
-        this.createdOn = new Timestamp(date.getTime());
+        this.createdOn = new Timestamp(new Date().getTime());
     }
 
     public Ticket(String requestType, String title, String description) {
         this.requestType = requestType;
         this.title = title;
         this.description = description;
-        Date date = new Date();
-        this.createdOn = new Timestamp(date.getTime());
+        this.createdOn = new Timestamp(new Date().getTime());
     }
 
     public int getId() {
