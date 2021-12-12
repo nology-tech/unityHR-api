@@ -30,7 +30,7 @@ public class UserController {
      return ResponseEntity.status(HttpStatus.OK).body(userRepo.findAll());
     }
 
-    @GetMapping ("User/{userId}")
+    @GetMapping ("User/{userFirebaseId}")
     public ResponseEntity<User> getUser(@PathVariable String userFirebaseId){
     //   return  ResponseEntity.status(HttpStatus.OK).body(users.stream().filter(user -> user.getFirebaseId().equals(userId)).findFirst().orElse(null));
     return ResponseEntity.status(HttpStatus.OK).body(userRepo.getByFirebaseId(userFirebaseId));
