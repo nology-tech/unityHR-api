@@ -17,14 +17,8 @@ public class Ticket {
     private String title;
     private String description;
     private String status;
-    // private String department;
-    private ArrayList<Response> responses;
-    private String assignee;
-    //private String responseOn;
     private String createdBy;
     private Timestamp createdOn;
-    //private String updatedBy;
-    //private String updatedOn;
 
     public Ticket() {
         Date date = new Date();
@@ -59,14 +53,6 @@ public class Ticket {
         return status;
     }
 
-    public ArrayList<Response> getResponses() {
-        return responses;
-    }
-
-    public String getAssignee() {
-        return assignee;
-    }
-
     public String getCreatedBy() {
         return createdBy;
     }
@@ -74,54 +60,6 @@ public class Ticket {
     public Timestamp getCreatedOn() {
         return createdOn;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setRequestType(String requestType) {
-        this.requestType = requestType;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setResponses(ArrayList<Response> responses) {
-        this.responses = responses;
-    }
-
-    public void setAssignee(String assignee) {
-        this.assignee = assignee;
-    }
-
-//    public void setResponseOn(String responseOn) {
-//        this.responseOn = responseOn;
-//    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public void setCreatedOn(Timestamp createdOn) {
-        this.createdOn = createdOn;
-    }
-
-//    public void setUpdatedBy(String updatedBy) {
-//        this.updatedBy = updatedBy;
-//    }
-
-//    public void setUpdatedOn(String updatedOn) {
-//        this.updatedOn = updatedOn;
-//    }
 
     @Override
     public String toString() {
@@ -131,13 +69,8 @@ public class Ticket {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
-                ", responses=" + responses +
-                ", assignee='" + assignee + '\'' +
-                //", responseOn='" + responseOn + '\'' +
                 ", createdBy='" + createdBy + '\'' +
                 ", createdOn='" + createdOn + '\'' +
-                //", updatedBy='" + updatedBy + '\'' +
-                //", updatedOn='" + updatedOn + '\'' +
                 '}';
     }
 }
