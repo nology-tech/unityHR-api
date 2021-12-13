@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import static java.lang.Integer.parseInt;
 
+@CrossOrigin
 @RestController
 public class JobTitlesController {
    private ArrayList<JobTitles> jobTitles = new ArrayList<>();
