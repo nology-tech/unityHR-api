@@ -2,6 +2,7 @@ package com.example.unityHR.Controllers;
 
 //import com.example.unityHR.Models.*;
 import com.example.unityHR.DTO.TicketDTO;
+import com.example.unityHR.Exceptions.ResourceNotFoundException;
 import com.example.unityHR.Models.Ticket;
 import com.example.unityHR.Repositories.TicketAssigneesRepository;
 import com.example.unityHR.Repositories.TicketRepository;
@@ -32,14 +33,23 @@ public class TicketController {
         //GET all tickets
         @GetMapping("/tickets")
         public ResponseEntity<List<Ticket>> getTickets(){
-            return ResponseEntity.status(HttpStatus.OK).body(ticketRepository.findAll());
+//            return ResponseEntity.status(HttpStatus.OK).body(ticketRepository.findAll());
+                //get list of all tkts from tkt repo
+                //for each tickt, make titcket DTO and send list of tkt DTO
+
+                return null;
         }
 
         //GET a ticket by ID quote
         @GetMapping("/ticket/{id}")
-        public TicketDTO getTicket(@PathVariable String id) throws Exception {
+        public ResponseEntity<TicketDTO> getTicket(@PathVariable String id) {
 //            return ResponseEntity.status(HttpStatus.OK).body(ticketRepository.findById(parseInt(id)));
-                return ticketService.getTicketById(parseInt(id));
+                try{
+                        return ResponseEntity.status(HttpStatus.OK).body(ticketService.getTicketById(parseInt(id)));
+
+                }catch (ResourceNotFoundException e){
+                        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+                }
         }
 
         //POST a new ticket
