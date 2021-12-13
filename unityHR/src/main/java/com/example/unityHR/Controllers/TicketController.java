@@ -4,9 +4,7 @@ package com.example.unityHR.Controllers;
 import com.example.unityHR.DTO.TicketDTO;
 import com.example.unityHR.Exceptions.ResourceNotFoundException;
 import com.example.unityHR.Models.Ticket;
-import com.example.unityHR.Repositories.TicketAssigneesRepository;
 import com.example.unityHR.Repositories.TicketRepository;
-import com.example.unityHR.Repositories.TicketResponsesRepository;
 import com.example.unityHR.Services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.lang.Integer.parseInt;
 
@@ -32,12 +31,17 @@ public class TicketController {
 
         //GET all tickets
         @GetMapping("/tickets")
-        public ResponseEntity<List<Ticket>> getTickets(){
+        public ResponseEntity<List<TicketDTO>> getTickets(){
 //            return ResponseEntity.status(HttpStatus.OK).body(ticketRepository.findAll());
                 //get list of all tkts from tkt repo
                 //for each tickt, make titcket DTO and send list of tkt DTO
-
-                return null;
+                List<Ticket> ticketList = ticketRepository.findAll();
+                List <TicketDTO> ticketDTOList = ticketList.stream().map((ticket) -> {
+//                        System.out.println(ticket.getId());
+//                        System.out.println(ticketService.getTicketById(ticket.getId()));
+                        return ticketService.getTicketById(ticket.getId());
+                }).collect(Collectors.toList());
+                return ResponseEntity.status(HttpStatus.OK).body(ticketDTOList);
         }
 
         //GET a ticket by ID quote
