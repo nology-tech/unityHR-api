@@ -74,5 +74,4 @@ public class TicketController {
             return ResponseEntity.status(HttpStatus.GONE).body("Deleted ticket : " + id);
         }
 
-
 }
