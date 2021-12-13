@@ -22,6 +22,7 @@ public class User {
     private String department;
     private String profileImage;
     private String theme;
+    //private boolean active;
 
 
 
@@ -37,6 +38,8 @@ public class User {
         this.type = type;
         this.jobTitle = jobTitle;
         this.department = department;
+        //this.active=true;
+
 
     }
     public User (String firebaseId, String pronoun, String firstName, String lastName, String address, String emailVerified,
@@ -53,6 +56,7 @@ public class User {
         this.department = department;
         this.profileImage = profileImage;
         this.theme = theme;
+        //this.active =true;
     }
 
     public String getFirebaseId() {
