@@ -1,15 +1,16 @@
 package com.example.unityHR.Models;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.UUID;
 
-//@Entity
+@Entity
 public class User {
-//    @Id
-    private String id;
+    @Id
+    @GeneratedValue
+    private UUID UUIDUser;
+    private String firebaseId;
     private String pronoun;
     private String firstName;
     private String lastName;
@@ -17,19 +18,33 @@ public class User {
     private String emailVerified;
     private String type;
     private String jobTitle;
-    private long mobile;
+    private int mobileNo;
     private String department;
     private String profileImage;
     private String theme;
-    private String createdBy;
-    private String createdOn;
-    private String updatedBy;
-    private String updatedOn;
+    //private boolean active;
 
-//    public User(){};
-    public User (String id, String pronoun, String firstName, String lastName, String address, String emailVerified,
-                 String type, String jobTitle, long mobile, String department, String profileImage, String theme) {
-        this.id = id;
+
+
+
+    public User(){};
+    //Called from Add user form
+    public User ( String firstName, String lastName, String emailVerified,
+                 String type, String jobTitle,  String department,String firebaseId) {
+        this.firebaseId = firebaseId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailVerified = emailVerified;
+        this.type = type;
+        this.jobTitle = jobTitle;
+        this.department = department;
+        //this.active=true;
+
+
+    }
+    public User (String firebaseId, String pronoun, String firstName, String lastName, String address, String emailVerified,
+                 String type, String jobTitle, int mobileNo, String department, String profileImage, String theme) {
+        this.firebaseId = firebaseId;
         this.pronoun = pronoun;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,18 +52,19 @@ public class User {
         this.emailVerified = emailVerified;
         this.type = type;
         this.jobTitle = jobTitle;
-        this.mobile = mobile;
+        this.mobileNo = mobileNo;
         this.department = department;
         this.profileImage = profileImage;
         this.theme = theme;
+        //this.active =true;
     }
 
-    public String getId() {
-        return id;
+    public String getFirebaseId() {
+        return firebaseId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setFirebaseId(String firebaseId) {
+        this.firebaseId = firebaseId;
     }
 
     public String getPronoun() {
@@ -107,12 +123,12 @@ public class User {
         this.jobTitle = jobTitle;
     }
 
-    public long getMobile() {
-        return mobile;
+    public long getMobileNo() {
+        return mobileNo;
     }
 
-    public void setMobile(long mobile) {
-        this.mobile = mobile;
+    public void setMobileNo(int mobileNo) {
+        this.mobileNo = mobileNo;
     }
 
     public String getDepartment() {
@@ -139,37 +155,37 @@ public class User {
         this.theme = theme;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public String getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(String createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
-
-    public String getUpdatedOn() {
-        return updatedOn;
-    }
-
-    public void setUpdatedOn(String updatedOn) {
-        this.updatedOn = updatedOn;
-    }
+//    public String getCreatedBy() {
+//        return createdBy;
+//    }
+//
+//    public void setCreatedBy(String createdBy) {
+//        this.createdBy = createdBy;
+//    }
+//
+//    public String getCreatedOn() {
+//        return createdOn;
+//    }
+//
+//    public void setCreatedOn(String createdOn) {
+//        this.createdOn = createdOn;
+//    }
+//
+//    public String getUpdatedBy() {
+//        return updatedBy;
+//    }
+//
+//    public void setUpdatedBy(String updatedBy) {
+//        this.updatedBy = updatedBy;
+//    }
+//
+//    public String getUpdatedOn() {
+//        return updatedOn;
+//    }
+//
+//    public void setUpdatedOn(String updatedOn) {
+//        this.updatedOn = updatedOn;
+//    }
 }
 
 
