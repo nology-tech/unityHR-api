@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
+@CrossOrigin
 public class UserController {
     private ArrayList<User> users = new ArrayList<>();
 
