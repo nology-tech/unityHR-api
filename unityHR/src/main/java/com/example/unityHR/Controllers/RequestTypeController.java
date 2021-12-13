@@ -29,6 +29,7 @@ public class RequestTypeController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Request Type too short");
     } else {
         repository.save(requestType);
+        System.out.println(requestType);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("Request Type Added " + requestType.getRequestType());
     }
