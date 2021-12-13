@@ -55,7 +55,7 @@ public class TicketController {
         public ResponseEntity<String> deleteTicket(@PathVariable String id){
                 // Valid 'id' check has to be added
                 //  tickets.remove(index);
-                // tickets.removeIf(ticket -> ticket.getId() == id);
+                // tickets.removeIf(ticket -> ticket.getFirebaseId() == id);
                 ticketRepository.deleteById(parseInt(id));
             return ResponseEntity.status(HttpStatus.GONE).body("Deleted ticket : " + id);
         }
