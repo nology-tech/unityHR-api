@@ -10,7 +10,7 @@ public class TicketDTO {
     private int id;
     private String requestType;
     private String title;
-    private String decsription;
+    private String description;
     private String status;
     private String createdBy;
     private Timestamp createdOn;
@@ -29,8 +29,8 @@ public class TicketDTO {
         this.title = title;
     }
 
-    public void setDecsription(String decsription) {
-        this.decsription = decsription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setStatus(String status) {
@@ -65,8 +65,8 @@ public class TicketDTO {
         return title;
     }
 
-    public String getDecsription() {
-        return decsription;
+    public String getDescription() {
+        return description;
     }
 
     public String getStatus() {
@@ -95,7 +95,7 @@ public class TicketDTO {
                 "id=" + id +
                 ", requestType='" + requestType + '\'' +
                 ", title='" + title + '\'' +
-                ", decsription='" + decsription + '\'' +
+                ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
                 ", createdBy='" + createdBy + '\'' +
                 ", createdOn=" + createdOn +
