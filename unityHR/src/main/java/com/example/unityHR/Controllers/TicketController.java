@@ -6,6 +6,7 @@ import com.example.unityHR.Exceptions.ResourceNotFoundException;
 import com.example.unityHR.Models.Ticket;
 import com.example.unityHR.Repositories.TicketRepository;
 import com.example.unityHR.Services.TicketService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
@@ -64,6 +65,21 @@ public class TicketController {
                 ticketRepository.save(ticket);
                 return ResponseEntity.status(HttpStatus.CREATED).body("Ticket has been added");
         }
+
+//        //PATCH a ticket
+//        @PatchMapping(path="/ticket/{id}", consumes = "application/json-patch+json")
+//        public ResponseEntity<Ticket> patchTicket(@PathVariable String id,@RequestBody JsonPatch patch){
+//                try {
+//                        Ticket ticket = ticketRepository.findById(parseInt(id));
+//                        Ticket ticketPatched = applyPatchToTicket(patch, ticket);
+//                        ticketRepository.updateTicket(ticketPatched);
+//                        return ResponseEntity.status(HttpStatus.OK).body(ticketPatched);
+//                } catch ( JsonProcessingException e) {
+//                        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//                } catch (Exception e) {
+//                        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//                }
+//        }
 
         //Delete a ticket
         @DeleteMapping("/ticket/{id}")
