@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@CrossOrigin
 public class UserController {
     private ArrayList<User> users = new ArrayList<>();
 
