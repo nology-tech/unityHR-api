@@ -89,6 +89,21 @@ public class TicketDTO {
         return responses;
     }
 
+    @Override
+    public String toString() {
+        return "TicketDTO{" +
+                "id=" + id +
+                ", requestType='" + requestType + '\'' +
+                ", title='" + title + '\'' +
+                ", decsription='" + decsription + '\'' +
+                ", status='" + status + '\'' +
+                ", createdBy='" + createdBy + '\'' +
+                ", createdOn=" + createdOn +
+                ", assignees=" + assignees +
+                ", responses=" + responses +
+                '}';
+    }
+
     public static class TicketResponseDTO{
         private String responseText;
         private String updatedBy;
@@ -116,6 +131,15 @@ public class TicketDTO {
 
         public Timestamp getUpdatedOn() {
             return updatedOn;
+        }
+
+        @Override
+        public String toString() {
+            return "TicketResponseDTO{" +
+                    "responseText='" + responseText + '\'' +
+                    ", updatedBy='" + updatedBy + '\'' +
+                    ", updatedOn=" + updatedOn +
+                    '}';
         }
     }
 }
