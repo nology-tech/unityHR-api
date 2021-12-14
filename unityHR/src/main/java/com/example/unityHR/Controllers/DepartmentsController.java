@@ -12,6 +12,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
+@CrossOrigin (origins = "http://localhost:3000")
 public class DepartmentsController {
  @Autowired
     DepartmentRepository repository;
