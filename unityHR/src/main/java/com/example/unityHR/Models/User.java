@@ -9,7 +9,7 @@ import java.util.UUID;
 public class User {
     @Id
     @GeneratedValue
-    private UUID UUIDUser;
+    private int User;
     private String firebaseId;
     private String pronoun;
     private String firstName;
@@ -18,14 +18,11 @@ public class User {
     private String emailVerified;
     private String type;
     private String jobTitle;
-    private int mobileNo;
+    private String mobileNo;
     private String department;
     private String profileImage;
     private String theme;
     //private boolean active;
-
-
-
 
     public User(){};
     //Called from Add user form
@@ -40,10 +37,9 @@ public class User {
         this.department = department;
         //this.active=true;
 
-
     }
     public User (String firebaseId, String pronoun, String firstName, String lastName, String address, String emailVerified,
-                 String type, String jobTitle, int mobileNo, String department, String profileImage, String theme) {
+                 String type, String jobTitle, String mobileNo, String department, String profileImage, String theme) {
         this.firebaseId = firebaseId;
         this.pronoun = pronoun;
         this.firstName = firstName;
@@ -123,11 +119,11 @@ public class User {
         this.jobTitle = jobTitle;
     }
 
-    public long getMobileNo() {
+    public String getMobileNo() {
         return mobileNo;
     }
 
-    public void setMobileNo(int mobileNo) {
+    public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
     }
 
