@@ -3,11 +3,13 @@ package com.example.unityHR.Controllers;
 //import com.example.unityHR.Models.*;
 import com.example.unityHR.DTO.TicketDTO;
 import com.example.unityHR.Exceptions.ResourceNotFoundException;
+import com.example.unityHR.Models.JobTitles;
 import com.example.unityHR.Models.Ticket;
 import com.example.unityHR.Repositories.TicketRepository;
 import com.example.unityHR.Services.TicketService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -80,6 +82,52 @@ public class TicketController {
 //                        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 //                }
 //        }
+
+        @PatchMapping("/ticket/{id}")
+        public ResponseEntity<Ticket> updateTicket(@PathVariable String id, @RequestBody Ticket ticket) {
+
+
+                if(ticketRepository.findById(parseInt(id)) !=null){
+//                        //Ticket ticket = ticketRepository
+//                                .findById(parseInt(id)).orElseThrow();
+                        Ticket originalTicket = ticketRepository.findById(parseInt(id)).orElseThrow();
+                        Ticket updatedTicket = ticketRepository.findById(parseInt(id)).orElseThrow();
+
+                        if(ticket.getDescription() != null)
+                        {updatedTicket.setDescription(ticket.getDescription());
+                        }else{
+                             originalTicket.setDescription(originalTicket.getDescription());
+                        }
+                        if(ticket.getRequestType() != null)
+                        {updatedTicket.setRequestType(ticket.getRequestType());
+                        } else {
+                                originalTicket.setRequestType(originalTicket.getRequestType());
+                        }
+                        if(ticket.getTitle() != null)
+                        {updatedTicket.setTitle(ticket.getTitle());
+                        } else {
+                                originalTicket.setTitle(originalTicket.getTitle());
+                        }
+                        if(ticket.getStatus() != null)
+                        {updatedTicket.setStatus(ticket.getStatus());} else {
+                                originalTicket.setStatus(originalTicket.getStatus());
+                        }
+
+                        ;
+                        ticketRepository.save(updatedTicket);
+
+
+
+                        return ResponseEntity
+                                .status(HttpStatus.OK)
+                                .header("ticket updated", "id: " + id)
+                                .body(updatedTicket);
+
+                } else {
+                        throw new ResourceNotFoundException();
+                }
+        }
+
 
         //Delete a ticket
         @DeleteMapping("/ticket/{id}")
