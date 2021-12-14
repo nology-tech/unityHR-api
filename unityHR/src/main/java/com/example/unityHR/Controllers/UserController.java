@@ -5,13 +5,13 @@ import com.example.unityHR.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
-@CrossOrigin (origins = "http://localhost:3000")
+@CrossOrigin
 public class UserController {
     private ArrayList<User> users = new ArrayList<>();
 
@@ -26,7 +26,7 @@ public class UserController {
     }
     //Fetch all users  method
     @GetMapping ("User/getAllUsers")
-    public ResponseEntity<List<User>> getUsers(){
+    public ResponseEntity<Iterable<User>> getUsers(){
      //return  ResponseEntity.status(HttpStatus.OK).body(users);
      return ResponseEntity.status(HttpStatus.OK).body(userRepo.findAll());
     }
@@ -39,13 +39,20 @@ public class UserController {
 
     //Delete single user method
     @DeleteMapping("User/{userFirebaseId}")
+    @Transactional
     public ResponseEntity<String> deleteUser(@PathVariable String userFirebaseId){
-       userRepo.deleteById(userFirebaseId);
+       userRepo.deleteByFirebaseId(userFirebaseId);
       //  users.removeIf(user -> user.getFirebaseId().equals(id));
        return ResponseEntity.status(HttpStatus.GONE).body("User Deleted Successfully" + userFirebaseId);
     }
     //Update user method
-
+    @DeleteMapping("User/email/{email}")
+    @Transactional
+    public ResponseEntity<String> deleteUserByEmail(@PathVariable String email){
+        userRepo.deleteByEmailVerified(email);
+        //  users.removeIf(user -> user.getFirebaseId().equals(id));
+        return ResponseEntity.status(HttpStatus.GONE).body("User Deleted Successfully" + email);
+    }
    //Bulk delete
     @PostMapping("/User/deleteUsers")
     private ResponseEntity<String> deleteEmployees(@RequestBody ArrayList<String> userlist){

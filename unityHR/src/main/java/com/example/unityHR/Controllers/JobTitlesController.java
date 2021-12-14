@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import static java.lang.Integer.parseInt;
 
+@CrossOrigin
 @RestController
 @CrossOrigin (origins = "http://localhost:3000")
 public class JobTitlesController {
