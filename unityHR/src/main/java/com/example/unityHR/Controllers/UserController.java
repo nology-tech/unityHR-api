@@ -12,8 +12,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3001")
 @RestController
+@CrossOrigin (origins = "http://localhost:3000")
+
 public class UserController {
     private ArrayList<User> users = new ArrayList<>();
 
