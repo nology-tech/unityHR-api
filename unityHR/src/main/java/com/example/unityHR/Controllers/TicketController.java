@@ -134,7 +134,7 @@ public class TicketController {
         @Transactional
         public ResponseEntity<String> deleteTicket(@PathVariable String id){
             // Valid 'id' check has to be added
-            ticketRepository.deleteById(parseInt(id));
+                   ticketService.deleteTicketFromAllEntities(id);
             return ResponseEntity.status(HttpStatus.GONE).body("Deleted ticket : " + id);
         }
 
