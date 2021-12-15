@@ -10,4 +10,5 @@ import java.util.List;
 public interface TicketAssigneesRepository extends JpaRepository<TicketsAssignees, Integer> {
     List<TicketsAssignees> findAllByticketid(int ticketid);
 
+//    void deleteAllById(int parseInt);
 }

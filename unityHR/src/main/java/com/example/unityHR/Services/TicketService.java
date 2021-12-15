@@ -10,12 +10,18 @@ import com.example.unityHR.Repositories.TicketRepository;
 import com.example.unityHR.Repositories.TicketResponsesRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static java.lang.Integer.parseInt;
 
 @Service
 @Transactional
@@ -49,4 +55,17 @@ public class TicketService {
         }).collect(Collectors.toList()));
         return ticketDTO;
     }
+
+    //To delete ticket from entity ticket, assignees and responses
+    public ResponseEntity<String> deleteTicketFromAllEntities(@PathVariable String id){
+        ticketRepository.deleteById(parseInt(id));
+        if (ticketAssigneesRepository.existsById(parseInt(id))) {
+            ticketAssigneesRepository.deleteById(parseInt(id));
+        }
+        if (ticketResponsesRepository.existsById(parseInt(id))) {
+            ticketResponsesRepository.deleteById(parseInt(id));
+        }
+        return ResponseEntity.status(HttpStatus.GONE).body("Deleted ticket : " + id);
+    }
+
 }

@@ -14,7 +14,7 @@ public class Ticket {
     private int id;
     private String requestType;
     private String title;
-    private String decsription;
+    private String description;
     private String status;
     private String createdBy;
     private Timestamp createdOn;
@@ -26,7 +26,7 @@ public class Ticket {
     public Ticket(String requestType, String title, String description) {
         this.requestType = requestType;
         this.title = title;
-        this.decsription = description;
+        this.description = description;
         this.createdOn = new Timestamp(new Date().getTime());
     }
 
@@ -42,8 +42,8 @@ public class Ticket {
         return requestType;
     }
 
-    public String getDecsription() {
-        return decsription;
+    public String getDescription() {
+        return description;
     }
 
     public String getStatus() {
@@ -64,7 +64,7 @@ public class Ticket {
                 "id=" + id +
                 ", requestType='" + requestType + '\'' +
                 ", title='" + title + '\'' +
-                ", decsription='" + decsription + '\'' +
+                ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
                 ", createdBy='" + createdBy + '\'' +
                 ", createdOn='" + createdOn + '\'' +
