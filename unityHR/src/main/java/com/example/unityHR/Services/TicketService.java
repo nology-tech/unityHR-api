@@ -27,7 +27,7 @@ public class TicketService {
     @Autowired
     TicketResponsesRepository ticketResponsesRepository;
 
-    public TicketDTO getTicketById(int id) throws Exception{
+    public TicketDTO getTicketById(int id) throws ResourceNotFoundException{
 
         Optional<Ticket> optionalTicket = ticketRepository.findById(id);
         List<TicketsAssignees> ticketsAssigneesList = ticketAssigneesRepository.findAllByticketid(id);
