@@ -14,7 +14,7 @@ import java.util.List;
 import static java.lang.Integer.parseInt;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3001")
 public class TicketResponsesController {
 
         @Autowired

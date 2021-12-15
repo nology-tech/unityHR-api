@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3001")
 @RestController
 public class UserController {
     private ArrayList<User> users = new ArrayList<>();
@@ -22,7 +24,7 @@ public class UserController {
     public ResponseEntity<String> addUser(@RequestBody User user ){
        // users.add(user);
         userRepo.save(user);
-        return ResponseEntity.status(HttpStatus.OK).body("User added sucessfully");
+        return ResponseEntity.status(HttpStatus.OK).body("User added successfully");
     }
     //Fetch all users  method
     @GetMapping ("User/getAllUsers")
@@ -41,6 +43,7 @@ public class UserController {
     @DeleteMapping("User/{userFirebaseId}")
     @Transactional
     public ResponseEntity<String> deleteUser(@PathVariable String userFirebaseId){
+       // userRepo.deleteByEmailVerified(userFirebaseId);
        userRepo.deleteByFirebaseId(userFirebaseId);
       //  users.removeIf(user -> user.getFirebaseId().equals(id));
        return ResponseEntity.status(HttpStatus.GONE).body("User Deleted Successfully" + userFirebaseId);

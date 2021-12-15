@@ -3,7 +3,7 @@ package com.example.unityHR.Models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.UUID;
+
 
 @Entity
 public class User {

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 import static java.lang.Integer.parseInt;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3001")
 public class TicketController {
         @Autowired
         TicketRepository ticketRepository;

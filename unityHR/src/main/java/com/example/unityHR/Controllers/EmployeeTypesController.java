@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin (origins = "http://localhost:3000")
+@CrossOrigin (origins = "http://localhost:3001")
 public class EmployeeTypesController {
 
     private ArrayList<EmployeeTypes> employeetypes = new ArrayList<>();
