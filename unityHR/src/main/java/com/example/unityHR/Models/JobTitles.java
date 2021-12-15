@@ -11,34 +11,34 @@ public class JobTitles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private int jobTitleId;
-    private String jobTitle;
+    private int Id;
+    private String name;
 
-    public JobTitles(String jobTitle) {
+    public JobTitles(String name) {
 
-          this.jobTitle = jobTitle;
+          this.name = name;
     }
 
     public JobTitles() {
     }
 
-    public int getJobTitleId() {
-        return jobTitleId;
+    public int getId() {
+        return Id;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
+    public String getName() {
+        return name;
     }
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "JobTitles{" +
-                "jobTitleId='" + jobTitleId + '\'' +
-                ", jobTitle='" + jobTitle + '\'' +
+                "jobTitleId='" + Id + '\'' +
+                ", jobTitle='" + name + '\'' +
                 '}';
     }
 }

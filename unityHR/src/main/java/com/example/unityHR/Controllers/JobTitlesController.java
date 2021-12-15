@@ -56,7 +56,7 @@ public class JobTitlesController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .header("Job Title Added", "1")
-                .body(jobTitle.getJobTitle());
+                .body(jobTitle.getName());
     }
 
     @DeleteMapping("/job-title/{id}")
@@ -86,7 +86,7 @@ public class JobTitlesController {
             if(jobTitlesRepository.findById(parseInt(id)) !=null){
                 JobTitles jobTitle = jobTitlesRepository
                         .findById(parseInt(id)).orElseThrow();
-                jobTitle.setJobTitle(title);
+                jobTitle.setName(title);
                 jobTitlesRepository.save(jobTitle);
 
                 return ResponseEntity
