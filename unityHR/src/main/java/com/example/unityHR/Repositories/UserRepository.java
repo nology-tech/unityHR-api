@@ -11,6 +11,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends CrudRepository<User,String> {
    User getByFirebaseId(String firebaseId);
+   User getByEmailVerified(String emailVerified);
+
+
+   @Modifying(clearAutomatically = true)
+   @Query("UPDATE User SET  first_name = :firstName, last_name = :lastName, pronoun = :pronoun, address = :address, mobile_no = :mobileNo WHERE email_verified = :emailVerified")
+
+   void updateMobileByFirebaseId(@Param("emailVerified") String emailVerified, @Param("firstName") String firstName,
+                                 @Param("lastName") String lastName,
+                                 @Param("pronoun") String pronoun,
+                                 @Param("address") String address,
+                                 @Param("mobileNo") String mobileNo );
    @Modifying
    @Query(value = "DELETE FROM User  WHERE FIREBASE_ID = :firebaseId")       // it will delete all the record with specific name
   void deleteByFirebaseId(@Param("firebaseId") String firebaseId);
