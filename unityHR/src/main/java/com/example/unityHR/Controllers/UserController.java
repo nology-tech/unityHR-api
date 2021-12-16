@@ -85,9 +85,9 @@ public class UserController {
    //Bulk delete
     @DeleteMapping("Users")
     @Transactional
-    private ResponseEntity<String> deleteEmployees(@RequestBody ArrayList<User> userList){
+    private ResponseEntity<String> deleteEmployees(@RequestBody ArrayList<String> userList){
       // userRepo.deleteAllById(userlist);
-      userList.stream().forEach(user->deleteUser(user.getFirebaseId()));
+      userList.stream().forEach(user->deleteUser(user));//
        return ResponseEntity.status(HttpStatus.GONE).body("Bulk delete successfull");
     }
 
