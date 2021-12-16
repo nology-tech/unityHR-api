@@ -1,5 +1,6 @@
 package com.example.unityHR.Models;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Response {
@@ -12,6 +13,7 @@ public class Response {
         this.ticketID = ticketID;
         this.response = response;
         this.updatedBy = updatedBy;
+        this.updatedOn = new Timestamp(new Date().getTime());
     }
 
     public String getTicketID() {
