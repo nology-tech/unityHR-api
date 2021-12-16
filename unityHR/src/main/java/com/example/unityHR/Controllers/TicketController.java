@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 import static java.lang.Integer.parseInt;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://unityhr-d3bf1.web.app")
 public class TicketController {
         @Autowired
         TicketRepository ticketRepository;
