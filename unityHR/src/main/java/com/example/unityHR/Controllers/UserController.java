@@ -1,4 +1,5 @@
 package com.example.unityHR.Controllers;
+import com.example.unityHR.Models.JobTitles;
 import com.example.unityHR.Models.User;
 //import com.example.unityHR.Repositories.UserRepository;
 import com.example.unityHR.Repositories.UserRepository;
@@ -19,7 +20,8 @@ import java.util.UUID;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin (origins = "http://localhost:3000")
+
 public class UserController {
     private ArrayList<User> users = new ArrayList<>();
     Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -33,8 +35,34 @@ public class UserController {
         userRepo.save(user);
         return ResponseEntity.status(HttpStatus.OK).body("User added sucessfully");
     }
+
+    @PutMapping ("User/{userFirebaseId}")
+    public ResponseEntity<String> updateUser(@PathVariable String userFirebaseId ,@RequestBody User user ){
+        // users.add(user);
+        if(userRepo.getByFirebaseId(userFirebaseId) !=null){
+            User databaseUser = userRepo
+                    .getByFirebaseId(userFirebaseId);
+            databaseUser.setFirstName(user.getFirstName());
+            databaseUser.setLastName(user.getLastName());
+            databaseUser.setEmailVerified(user.getEmailVerified());
+            databaseUser.setJobTitle(user.getJobTitle());
+            databaseUser.setDepartment(user.getDepartment());
+            databaseUser.setType(user.getType());
+            userRepo.save(databaseUser);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                      .body("User updated: " + user);
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_MODIFIED)
+                  //  .header("JobTitleId Not Found to update ", "id: " + id)
+                    .body("USer"+ user+" not found to update");
+        }
+
+    }
+
     //Fetch all users  method
-    @GetMapping ("User/getAllUsers")
+    @GetMapping ("/Users")
     public ResponseEntity<Iterable<User>> getUsers(){
      //return  ResponseEntity.status(HttpStatus.OK).body(users);
      return ResponseEntity.status(HttpStatus.OK).body(userRepo.findAll());
@@ -59,13 +87,14 @@ public class UserController {
     @Transactional
     public ResponseEntity<String> deleteUserByEmail(@PathVariable String email){
         userRepo.deleteByEmailVerified(email);
-        //  users.removeIf(user -> user.getFirebaseId().equals(id));
-        return ResponseEntity.status(HttpStatus.GONE).body("User Deleted Successfully" + email);
+         return ResponseEntity.status(HttpStatus.GONE).body("User Deleted Successfully" + email);
     }
    //Bulk delete
-    @PostMapping("/User/deleteUsers")
-    private ResponseEntity<String> deleteEmployees(@RequestBody ArrayList<String> userlist){
-       userRepo.deleteAllById(userlist);
+    @DeleteMapping("Users")
+    @Transactional
+    private ResponseEntity<String> deleteEmployees(@RequestBody ArrayList<User> userList){
+      // userRepo.deleteAllById(userlist);
+      userList.stream().forEach(user->deleteUser(user.getFirebaseId()));
        return ResponseEntity.status(HttpStatus.GONE).body("Bulk delete successfull");
     }
 

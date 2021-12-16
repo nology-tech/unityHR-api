@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface TicketAssigneesRepository extends JpaRepository<TicketsAssignees, Integer> {
     List<TicketsAssignees> findAllByticketid(int ticketid);
+    long deleteByTicketidAndEmailVerified(int ticketid, String emailVerified);
 
+//    void deleteAllById(int parseInt);
 }

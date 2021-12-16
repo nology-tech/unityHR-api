@@ -49,6 +49,10 @@ public class TicketsResponses {
         return updatedBy;
     }
 
+    public Timestamp getUpdatedOn() {
+        return updatedOn;
+    }
+
     public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
