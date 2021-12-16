@@ -1,7 +1,6 @@
 package com.example.unityHR.Models;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,17 +20,16 @@ public class Ticket {
     private Timestamp createdOn;
 
     public Ticket() {
-        Date date = new Date();
-        this.createdOn = new Timestamp(date.getTime());
+        this.createdOn = new Timestamp(new Date().getTime());
     }
 
     public Ticket(String requestType, String title, String description) {
         this.requestType = requestType;
         this.title = title;
         this.description = description;
-        Date date = new Date();
-        this.createdOn = new Timestamp(date.getTime());
+        this.createdOn = new Timestamp(new Date().getTime());
     }
+
 
     public int getId() {
         return id;
@@ -59,6 +57,22 @@ public class Ticket {
 
     public Timestamp getCreatedOn() {
         return createdOn;
+    }
+
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

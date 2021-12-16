@@ -13,7 +13,9 @@ import java.util.Optional;
 
 import static java.lang.Integer.parseInt;
 
+
 @RestController
+@CrossOrigin (origins = "http://localhost:3000")
 public class JobTitlesController {
    private ArrayList<JobTitles> jobTitles = new ArrayList<>();
 
