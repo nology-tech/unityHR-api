@@ -59,11 +59,11 @@ public class TicketService {
     //To delete ticket from entity ticket, assignees and responses
     public ResponseEntity<String> deleteTicketFromAllEntities(@PathVariable String id){
         ticketRepository.deleteById(parseInt(id));
-        if (ticketAssigneesRepository.existsById(parseInt(id))) {
-            ticketAssigneesRepository.deleteById(parseInt(id));
+        if (ticketAssigneesRepository.existsAllByticketid(parseInt(id))) {
+            ticketAssigneesRepository.deleteAllByticketid(parseInt(id));
         }
-        if (ticketResponsesRepository.existsById(parseInt(id))) {
-            ticketResponsesRepository.deleteById(parseInt(id));
+        if (ticketResponsesRepository.existsAllByticketid(parseInt(id))) {
+            ticketResponsesRepository.deleteAllByticketid(parseInt(id));
         }
         return ResponseEntity.status(HttpStatus.GONE).body("Deleted ticket : " + id);
     }
