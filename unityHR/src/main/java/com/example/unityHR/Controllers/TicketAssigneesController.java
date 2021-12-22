@@ -15,7 +15,8 @@ import java.util.List;
 import static java.lang.Integer.parseInt;
 
 @RestController
-@CrossOrigin(origins = "https://unityhr-d3bf1.web.app")
+//@CrossOrigin(origins = "https://unityhr-d3bf1.web.app")
+@CrossOrigin
 public class TicketAssigneesController {
 
         @Autowired

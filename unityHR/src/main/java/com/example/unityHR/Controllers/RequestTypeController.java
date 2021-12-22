@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "https://unityhr-d3bf1.web.app")
+//@CrossOrigin(origins = "https://unityhr-d3bf1.web.app")
+@CrossOrigin
 public class RequestTypeController {
 
 

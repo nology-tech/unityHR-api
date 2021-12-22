@@ -20,8 +20,8 @@ import java.util.UUID;
 
 
 @RestController
-@CrossOrigin (origins = "https://unityhr-d3bf1.web.app")
-
+//@CrossOrigin (origins = "https://unityhr-d3bf1.web.app")
+@CrossOrigin
 public class UserController {
     private ArrayList<User> users = new ArrayList<>();
     Logger logger = LoggerFactory.getLogger(UserController.class);
