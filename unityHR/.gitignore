@@ -35,3 +35,5 @@ build/
 
 ### JPA config ###
 .env
+
+*firebase_config.json
