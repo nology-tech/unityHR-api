@@ -29,7 +29,7 @@ public class UserController {
   @Autowired(required=false)
   UserRepository userRepo;
     //Add user method
-    @PostMapping ("/User")
+    @PostMapping ("User")
     public ResponseEntity<String> addUser(@RequestBody User user ){
        // users.add(user);
         userRepo.save(user);
