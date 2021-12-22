@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin (origins = "https://unityhr-d3bf1.web.app")
+@CrossOrigin
 public class EmployeeTypesController {
 
     private ArrayList<EmployeeTypes> employeetypes = new ArrayList<>();

@@ -15,7 +15,7 @@ import static java.lang.Integer.parseInt;
 
 
 @RestController
-@CrossOrigin (origins = "https://unityhr-d3bf1.web.app")
+@CrossOrigin
 public class JobTitlesController {
    private ArrayList<JobTitles> jobTitles = new ArrayList<>();
 
